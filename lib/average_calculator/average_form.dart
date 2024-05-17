@@ -14,7 +14,7 @@ class _AverageFormState extends State<AverageForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calculadora de Média'),
+        title: const Text('CALCULADOR DE MÉDIA'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

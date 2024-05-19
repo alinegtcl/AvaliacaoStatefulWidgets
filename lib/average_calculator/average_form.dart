@@ -24,7 +24,7 @@ class _AverageFormState extends State<AverageForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CALCULADOR DE MÉDIA'),
+        title: const Text('Tarefa Final DM1 2024.1'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -34,9 +34,20 @@ class _AverageFormState extends State<AverageForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Text(
+                  'CALCULADOR DE MÉDIA',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.0,
+                  ),
+                ),
+                const SizedBox(height: 16.0),
                 TextFormField(
                   controller: _nameController,
-                  decoration: const InputDecoration(labelText: 'Nome'),
+                  decoration: const InputDecoration(
+                    labelText: 'Nome',
+                    border: OutlineInputBorder(),
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, insira um nome';
@@ -44,9 +55,13 @@ class _AverageFormState extends State<AverageForm> {
                     return null;
                   },
                 ),
+                const SizedBox(height: 16.0),
                 TextFormField(
                   controller: _emailController,
-                  decoration: const InputDecoration(labelText: 'eMail'),
+                  decoration: const InputDecoration(
+                    labelText: 'eMail',
+                    border: OutlineInputBorder(),
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, insira um e-mail';
@@ -54,12 +69,16 @@ class _AverageFormState extends State<AverageForm> {
                     return null;
                   },
                 ),
+                const SizedBox(height: 16.0),
                 Row(
                   children: [
                     Expanded(
                       child: TextFormField(
                         controller: _grade1Controller,
-                        decoration: const InputDecoration(labelText: 'Nota 1'),
+                        decoration: const InputDecoration(
+                          labelText: 'Nota 1',
+                          border: OutlineInputBorder(),
+                        ),
                         keyboardType: TextInputType.number,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -69,11 +88,14 @@ class _AverageFormState extends State<AverageForm> {
                         },
                       ),
                     ),
-                    const SizedBox(width: 8.0),
+                    const SizedBox(width: 16.0),
                     Expanded(
                       child: TextFormField(
                         controller: _grade2Controller,
-                        decoration: const InputDecoration(labelText: 'Nota 2'),
+                        decoration: const InputDecoration(
+                          labelText: 'Nota 2',
+                          border: OutlineInputBorder(),
+                        ),
                         keyboardType: TextInputType.number,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -83,11 +105,14 @@ class _AverageFormState extends State<AverageForm> {
                         },
                       ),
                     ),
-                    const SizedBox(width: 8.0),
+                    const SizedBox(width: 16.0),
                     Expanded(
                       child: TextFormField(
                         controller: _grade3Controller,
-                        decoration: const InputDecoration(labelText: 'Nota 3'),
+                        decoration: const InputDecoration(
+                          labelText: 'Nota 3',
+                          border: OutlineInputBorder(),
+                        ),
                         keyboardType: TextInputType.number,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -106,13 +131,15 @@ class _AverageFormState extends State<AverageForm> {
                 ),
                 const SizedBox(height: 16.0),
                 const Text('Resultado:'),
-                Text('Nome: $_name'),
+                Text(
+                  'Nome: $_name',
+                ),
                 Text('eMail: $_email'),
                 Text('Notas: $_grades'),
-                Text('Média: $_average'),
+                Text('Média: ${_average.toStringAsFixed(2)}'),
                 const SizedBox(height: 16.0),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: _clearFields,
                   child: const Text('Apaga os Campos'),
                 ),
               ],
@@ -136,5 +163,19 @@ class _AverageFormState extends State<AverageForm> {
         _average = (grade1 + grade2 + grade3) / 3;
       });
     }
+  }
+
+  void _clearFields() {
+    setState(() {
+      _nameController.clear();
+      _emailController.clear();
+      _grade1Controller.clear();
+      _grade2Controller.clear();
+      _grade3Controller.clear();
+      _name = '';
+      _email = '';
+      _grades = '';
+      _average = 0.0;
+    });
   }
 }

@@ -18,13 +18,17 @@ class _AverageFormState extends State<AverageForm> {
   String _name = '';
   String _email = '';
   String _grades = '';
-  double _average = 0.0;
+  String _average = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tarefa Final DM1 2024.1'),
+        title: const Text(
+          'Tarefa Final DM1 2024.1',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.blue,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -45,7 +49,7 @@ class _AverageFormState extends State<AverageForm> {
                 TextFormField(
                   controller: _nameController,
                   decoration: const InputDecoration(
-                    labelText: 'Nome',
+                    labelText: 'NOME',
                     border: OutlineInputBorder(),
                   ),
                   validator: (value) {
@@ -59,7 +63,7 @@ class _AverageFormState extends State<AverageForm> {
                 TextFormField(
                   controller: _emailController,
                   decoration: const InputDecoration(
-                    labelText: 'eMail',
+                    labelText: 'eMAIL',
                     border: OutlineInputBorder(),
                   ),
                   validator: (value) {
@@ -127,20 +131,57 @@ class _AverageFormState extends State<AverageForm> {
                 const SizedBox(height: 16.0),
                 ElevatedButton(
                   onPressed: _calculateAverage,
-                  child: const Text('Calcula Média'),
+                  child: const Text(
+                    'CALCULA MÉDIA',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 16.0),
-                const Text('Resultado:'),
+                const Text(
+                  'Resultado:',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                const SizedBox(height: 8.0),
                 Text(
                   'Nome: $_name',
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                  ),
                 ),
-                Text('eMail: $_email'),
-                Text('Notas: $_grades'),
-                Text('Média: ${_average.toStringAsFixed(2)}'),
+                const SizedBox(height: 8.0),
+                Text(
+                  'eMail: $_email',
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                const SizedBox(height: 8.0),
+                Text(
+                  'Notas: $_grades',
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+                const SizedBox(height: 8.0),
+                Text(
+                  'Média: $_average',
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
                 const SizedBox(height: 16.0),
                 ElevatedButton(
                   onPressed: _clearFields,
-                  child: const Text('Apaga os Campos'),
+                  child: const Text(
+                    'APAGA OS CAMPOS',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -160,7 +201,7 @@ class _AverageFormState extends State<AverageForm> {
         double grade3 = double.parse(_grade3Controller.text);
         _grades =
             '${_grade1Controller.text} - ${_grade2Controller.text} - ${_grade3Controller.text}';
-        _average = (grade1 + grade2 + grade3) / 3;
+        _average = ((grade1 + grade2 + grade3) / 3).toStringAsFixed(1);
       });
     }
   }
@@ -175,7 +216,7 @@ class _AverageFormState extends State<AverageForm> {
       _name = '';
       _email = '';
       _grades = '';
-      _average = 0.0;
+      _average = '';
     });
   }
 }
